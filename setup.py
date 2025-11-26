@@ -7,7 +7,7 @@ setup(
     version="1.0.0",
     author="Canonical webteam",
     author_email="webteam@canonical.com",
-    url="https://github.com/canonical/canonicalwebteam.cookie_service",
+    url="https://github.com/canonical/canonicalwebteam.cookie-service",
     description=("Flask extension to integrate with shared cookie service."),
     packages=find_packages(),
     long_description=open("README.md").read(),

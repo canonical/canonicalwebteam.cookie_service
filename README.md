@@ -10,7 +10,7 @@ pip install canonicalwebteam.cookie_service
 
 Or add to your `requirements.txt`:
 ```
-canonicalwebteam.cookie_service
+canonicalwebteam.cookie-service
 ```
 
 ### Frontend Dependency
@@ -190,6 +190,6 @@ def my_after_request(response):
 
 ## Support
 
-- Report issues: [GitHub Issues](https://github.com/canonical/canonicalwebteam.cookie_service/issues)
+- Report issues: [GitHub Issues](https://github.com/canonical/canonicalwebteam.cookie-service/issues)
 - Reach out to Web Engineering.
 
