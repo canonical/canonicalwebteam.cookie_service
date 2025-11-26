@@ -1,9 +1,9 @@
 # __init__.py
 import os
 from flask import request, g
-from .routes import consent_bp
-from .client import CookieServiceClient
-from .helpers import (
+from .cookie_service.routes import consent_bp
+from .cookie_service.client import CookieServiceClient
+from .cookie_service.helpers import (
     sync_preferences_cookie,
     check_session_and_redirect,
     set_cookie_for_session_life,
