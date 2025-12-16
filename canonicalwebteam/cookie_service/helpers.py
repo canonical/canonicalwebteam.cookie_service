@@ -89,6 +89,10 @@ def skip_non_html_requests(response=None) -> bool:
     if request.endpoint == "static":
         return True
 
+    # Skip flask-base health check endpoint
+    if request.path == "/_status/check":
+        return True
+
     # Ignore requests to the cookies endpoint itself
     if request.path.startswith("/cookies"):
         return True
@@ -124,6 +128,10 @@ def sync_preferences_cookie(response):
     This is the middleware helper for syncing preferences to a local cookie.
     The host app must call this from its own @after_request hook.
     """
+    # Check if we've already run sync in this request
+    if getattr(g, "cookies_synced", False):
+        return response
+
     # If service is down or user doesn't want shared cookies, skip
     if getattr(g, "cookies_service_up", False) is not True:
         return response
@@ -131,11 +139,7 @@ def sync_preferences_cookie(response):
         # Otherwise we set a cookie for interaction with cookie-policy.js
         set_cookie_for_session_life(response, "_cookies_service_up", "1")
 
-    # Check if we've already run sync in this request
-    if getattr(g, "cookies_synced", False):
-        return response
-
-    # Only run on legitamate page requests
+    # Only run on legitimate page requests
     if skip_non_html_requests(response):
         return response
 

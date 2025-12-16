@@ -1,3 +1,7 @@
+### 1.0.3 [16-12-2025]
+- Skip `/_status/check` endpoint
+- Only add header `"vary": "cookie"` to html response
+
 ### 1.0.2 [12-12-2025]
 - Add header "vary": "cookie" to after_request hook to ensure fresh response on redirect
 

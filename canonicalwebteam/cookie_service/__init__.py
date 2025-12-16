@@ -4,6 +4,7 @@ from flask import request, g
 from .routes import consent_bp
 from .client import CookieServiceClient
 from .helpers import (
+    skip_non_html_requests,
     sync_preferences_cookie,
     check_session_and_redirect,
     set_cookie_for_session_life,
@@ -100,5 +101,6 @@ class CookieConsent:
         After request hook that syncs preferences cookie from the service.
         """
         response = sync_preferences_cookie(response)
-        response.headers.add("Vary", "Cookie")
+        if not skip_non_html_requests(response): 
+            response.headers.add("Vary", "Cookie")
         return response
